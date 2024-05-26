@@ -33,7 +33,7 @@
 ### 克隆项目
 使用Git克隆项目到本地机器：
 ```bash
-git clone https://github.com/yourusername/yourproject.git
+git clone https://github.com/willow-god/Android-SQLite-Project.git
 ```
 
 ### 导入项目
@@ -47,6 +47,9 @@ git clone https://github.com/yourusername/yourproject.git
 - 点击IDE中的运行按钮（绿色三角形）来安装并启动应用程序。
 
 ## 使用说明
+
+### 主界面
+![主界面](./img/home.png)
 
 ### 添加用户信息
 1. 打开应用程序，填写必要的用户信息字段。
@@ -65,6 +68,8 @@ git clone https://github.com/yourusername/yourproject.git
 2. 点击“删除”按钮，应用程序将从数据库中删除该用户的所有信息。
 
 ### 清空界面或数据库
+![清空弹窗](./img/clean.png)
+
 1. 点击“清空”按钮。
 2. 选择“清空数据库”以删除数据库中的所有用户信息，或选择“清空界面”以清除界面上的输入框内容。
 
@@ -93,17 +98,62 @@ git clone https://github.com/yourusername/yourproject.git
 - `Cursor`：用于从数据库中检索数据。
 - `AlertDialog.Builder`：用于创建和管理对话框。
 
+### 关键代码示例
+
+#### 创建数据库表
+```java
+public class DatabaseHelper extends SQLiteOpenHelper {
+    // 数据库版本、表名、列名等常量...
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CREATE_TABLE_USERS);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        onCreate(db);
+    }
+}
+```
+
+#### 插入新用户
+```java
+public long addUser(SQLiteDatabase db, String username, String password, String phone, String email, String gender) {
+    ContentValues values = new ContentValues();
+    values.put(COLUMN_USERNAME, username);
+    values.put(COLUMN_PASSWORD, password);
+    values.put(COLUMN_PHONE, phone);
+    values.put(COLUMN_EMAIL, email);
+    values.put(COLUMN_GENDER, gender);
+    return db.insert(TABLE_USERS, null, values);
+}
+```
+
+#### 删除用户
+```java
+public int deleteUser(SQLiteDatabase db, String username) {
+    String selection = COLUMN_USERNAME + "=?";
+    String[] selectionArgs = new String[]{username};
+    return db.delete(TABLE_USERS, selection, selectionArgs);
+}
+```
+
 ### 布局文件
 - 应用程序的布局文件使用XML格式定义，包含用户界面的所有元素。
 
 ## 贡献者
 
 ### 主要贡献者
-- 张三：负责数据库设计和实现。
-- 李四：负责用户界面设计和实现。
+- [清羽飞扬](https://blog.qyliu.top/about)：负责数据库设计和实现。
 
 ### 贡献指南
-我们欢迎任何形式的贡献，请遵循我们的[贡献指南](CONTRIBUTING.md)。
+我们欢迎任何形式的贡献
 
 ## 许可
 

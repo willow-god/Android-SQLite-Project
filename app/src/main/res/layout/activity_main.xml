@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="351dp"
-        android:layout_height="578dp"
+        android:layout_width="354dp"
+        android:layout_height="625dp"
+        android:background="@drawable/round_background"
         android:orientation="vertical"
+        android:padding="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
