@@ -158,7 +158,7 @@ public int deleteUser(SQLiteDatabase db, String username) {
 ## 许可
 
 ### 开源许可
-本项目采用[CC-NA-SC 3.0](LICENSE)许可，请在分发或使用时遵守相关协议。
+本项目采用[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)许可，请在分发或使用时遵守相关协议。
 
 ## 问题与支持
 
